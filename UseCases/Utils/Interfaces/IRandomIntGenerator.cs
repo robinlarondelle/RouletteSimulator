@@ -1,4 +1,4 @@
-namespace UseCases.Wheel.Interfaces;
+namespace UseCases.Utils.Interfaces;
 
 public interface IRandomIntGenerator
 {

@@ -1,44 +1,45 @@
-using Domain.Game.Interfaces;
 using Domain.Numbers;
-using Domain.Shared;
 using Domain.Wheel;
 using FluentAssertions;
-using NSubstitute;
 using Xunit;
 
 namespace DomainTests.WheelTests;
 
 public class WheelTests
 {
-    [Theory]
-    [InlineData(RouletteType.European)]
-    [InlineData(RouletteType.American)]
-    public void AWheel_ShouldHaveNumbersWithColors_BasedOnRouletteType(
-        RouletteType rouletteType
-        )
+    [Fact]
+    public void Wheel_ShouldHaveFPocketsProperty()
     {
         // Arrange
-        var gameSettingsMock = Substitute.For<IGameSettings>();
-        gameSettingsMock.GetRouletteType().Returns(rouletteType);
-        var wheel = new Wheel(gameSettingsMock);
+        var wheel = new Wheel();
         
         // Assert
-        wheel.Numbers.Should().BeEquivalentTo(rouletteType == RouletteType.American
-            ? NumberConstants.AmericanNumbers
-            : NumberConstants.EuropeanNumbers);
+        wheel.Pockets.Should().NotBeNull();
     }
     
     [Fact]
-    public void Wheel_ShouldThrowArgumentOutOfRangeException_WhenRouletteTypeIsInvalid()
+    public void Wheel_SetEuropeanPockets_ShouldSetPocketsToEuropeanNumbers()
     {
         // Arrange
-        var gameSettingsMock = Substitute.For<IGameSettings>();
-        gameSettingsMock.GetRouletteType().Returns((RouletteType) 99);
+        var wheel = new Wheel();
         
         // Act
-        Action act = () => new Wheel(gameSettingsMock);
+        wheel.SetEuropeanPockets();
         
         // Assert
-        act.Should().Throw<ArgumentOutOfRangeException>();
+        wheel.Pockets.Should().BeEquivalentTo(NumberConstants.EuropeanNumbers);
+    }
+    
+    [Fact]
+    public void Wheel_SetAmericanPockets_ShouldSetPocketsToAmericanNumbers()
+    {
+        // Arrange
+        var wheel = new Wheel();
+        
+        // Act
+        wheel.SetAmericanPockets();
+        
+        // Assert
+        wheel.Pockets.Should().BeEquivalentTo(NumberConstants.AmericanNumbers);
     }
 }

@@ -1,20 +1,23 @@
-using Domain.Game.Interfaces;
 using Domain.Numbers;
-using Domain.Shared;
 
 namespace Domain.Wheel;
 
 public class Wheel
 {
-    public IList<Number> Numbers { get; set; }
+    public IList<Number> Pockets { get; set; }
 
-    public Wheel(IGameSettings gameSettings)
+    public Wheel()
     {
-        Numbers = gameSettings.GetRouletteType() switch
-        {
-            RouletteType.European => NumberConstants.EuropeanNumbers,
-            RouletteType.American => NumberConstants.AmericanNumbers,
-            _ => throw new ArgumentOutOfRangeException(nameof(gameSettings.GetRouletteType), gameSettings, null)
-        };
+        Pockets = new List<Number>();
+    }
+    
+    public void SetEuropeanPockets()
+    {
+        Pockets = NumberConstants.EuropeanNumbers;
+    }
+    
+    public void SetAmericanPockets()
+    {
+        Pockets = NumberConstants.AmericanNumbers;
     }
 }

@@ -1,4 +1,4 @@
-namespace Domain.Shared;
+namespace Domain.Game;
 
 public enum RouletteType
 {

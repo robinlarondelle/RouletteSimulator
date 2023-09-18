@@ -1,6 +1,6 @@
-using UseCases.Wheel.Interfaces;
+using UseCases.Utils.Interfaces;
 
-namespace UseCases.Wheel.Generators;
+namespace UseCases.Utils;
 
 public class RandomIntGenerator : IRandomIntGenerator
 {
