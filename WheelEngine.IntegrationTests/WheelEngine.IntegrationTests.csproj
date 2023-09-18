@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <RootNamespace>RouletteSimulator.Engine.Specflow.Tests</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoFixture.Xunit2" Version="4.18.0" />
+      <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0-preview-23424-02" />
+      <PackageReference Include="NSubstitute" Version="5.1.0" />
+      <PackageReference Include="SpecFlow" Version="4.0.31-beta" />
+      <PackageReference Include="SpecFlow.xUnit" Version="4.0.31-beta" />
+      <PackageReference Include="xunit" Version="2.5.1-pre.33" />
+      <PackageReference Include="xunit.runner.visualstudio" Version="2.5.1-pre.15">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="StepDefinitions\SpinRoulette.feature" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckBuild Remove="StepDefinitions\SpinRoulette.feature.cs" />
+    </ItemGroup>
+
+</Project>

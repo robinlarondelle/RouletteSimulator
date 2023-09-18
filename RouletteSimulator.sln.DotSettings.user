@@ -1,0 +1,20 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/Users/robinlarondelle/Library/Caches/JetBrains/Rider2023.2/resharper-host/temp/Rider/vAny/CoverageData/_RouletteSimulator.-658492927/Snapshot/snapshot.utdcvr</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b8cc1347_002D0eec_002D4ae7_002D9812_002D90f6dcf6aa8e/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Layout_ShouldHaveFields_BasedOnRouletteType" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::B607BC78-7A2A-4CDF-B981-B21BE54E26B6::net7.0::DomainTests.LayoutTests.LayoutTests.Layout_ShouldHaveFields_BasedOnRouletteType&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e2ee0d8b_002Dbcb5_002D42ac_002Dae12_002D124a510d8a2d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Layout_ShouldHaveField_BasedOnRouletteType" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::B607BC78-7A2A-4CDF-B981-B21BE54E26B6::net7.0::DomainTests.Layout.LayoutTests.Layout_ShouldHaveField_BasedOnRouletteType&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=fea681a8_002Dd27d_002D4fbf_002D9e47_002Db5074aaabc9d/@EntryIndexedValue">&lt;SessionState ContinuousTestingIsOn="True" ContinuousTestingMode="3" IsActive="True" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
+&lt;/SessionState&gt;</s:String>
+	
+	
+	</wpf:ResourceDictionary>
