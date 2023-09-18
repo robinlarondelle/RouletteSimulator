@@ -1,7 +1,9 @@
+using Domain.Game.Interfaces;
 using Domain.Numbers;
 using Domain.Shared;
 using Domain.Wheel;
 using FluentAssertions;
+using NSubstitute;
 using Xunit;
 
 namespace DomainTests.WheelTests;
@@ -16,7 +18,9 @@ public class WheelTests
         )
     {
         // Arrange
-        var wheel = new Wheel(rouletteType);
+        var gameSettingsMock = Substitute.For<IGameSettings>();
+        gameSettingsMock.GetRouletteType().Returns(rouletteType);
+        var wheel = new Wheel(gameSettingsMock);
         
         // Assert
         wheel.Numbers.Should().BeEquivalentTo(rouletteType == RouletteType.American
@@ -28,10 +32,11 @@ public class WheelTests
     public void Wheel_ShouldThrowArgumentOutOfRangeException_WhenRouletteTypeIsInvalid()
     {
         // Arrange
-        var rouletteType = (RouletteType) 99; // invalid roulette type
+        var gameSettingsMock = Substitute.For<IGameSettings>();
+        gameSettingsMock.GetRouletteType().Returns((RouletteType) 99);
         
         // Act
-        Action act = () => new Wheel(rouletteType);
+        Action act = () => new Wheel(gameSettingsMock);
         
         // Assert
         act.Should().Throw<ArgumentOutOfRangeException>();

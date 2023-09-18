@@ -1,6 +1,6 @@
 using Domain.Numbers;
 
-namespace RouletteSimulator.Engine.Interfaces;
+namespace UseCases.Wheel.Interfaces;
 
 public interface INumberGenerator
 {

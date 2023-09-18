@@ -1,8 +1,8 @@
 using Domain.Numbers;
 using Domain.Shared;
-using RouletteSimulator.Engine.Interfaces;
+using UseCases.Wheel.Interfaces;
 
-namespace RouletteSimulator.Engine;
+namespace UseCases.Wheel;
 
 public class Wheel: IWheel
 {

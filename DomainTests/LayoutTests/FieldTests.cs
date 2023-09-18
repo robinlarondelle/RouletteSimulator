@@ -3,7 +3,7 @@ using Domain.Numbers;
 using FluentAssertions;
 using Xunit;
 
-namespace DomainTests.FieldTests;
+namespace DomainTests.LayoutTests;
 
 public class FieldTests
 {

@@ -1,18 +1,19 @@
+using Domain.Game.Interfaces;
 using Domain.Numbers;
 using Domain.Shared;
-using RouletteSimulator.Engine.Interfaces;
+using UseCases.Wheel.Interfaces;
 
-namespace RouletteSimulator.Engine.Generators;
+namespace UseCases.Wheel.Generators;
 
 public class NumberGenerator : INumberGenerator
 {
     private readonly IList<Number> _pocketNumbers;
     private readonly IRandomIntGenerator _randomIntGenerator;
 
-    public NumberGenerator(IRandomIntGenerator randomIntGenerator, RouletteType rouletteType)
+    public NumberGenerator(IRandomIntGenerator randomIntGenerator, IGameSettings gameSettings)
     {
         _randomIntGenerator = randomIntGenerator;
-        _pocketNumbers = rouletteType == RouletteType.European ? NumberConstants.EuropeanNumbers : NumberConstants.AmericanNumbers;
+        _pocketNumbers = gameSettings.GetRouletteType() == RouletteType.European ? NumberConstants.EuropeanNumbers : NumberConstants.AmericanNumbers;
     }
     
     public Number GenerateNumber()

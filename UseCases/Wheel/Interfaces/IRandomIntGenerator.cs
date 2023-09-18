@@ -1,4 +1,4 @@
-namespace RouletteSimulator.Engine.Interfaces;
+namespace UseCases.Wheel.Interfaces;
 
 public interface IRandomIntGenerator
 {

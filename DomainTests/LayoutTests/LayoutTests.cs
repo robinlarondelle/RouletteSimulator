@@ -1,7 +1,9 @@
+using Domain.Game.Interfaces;
 using Domain.Layout;
 using Domain.Numbers;
 using Domain.Shared;
 using FluentAssertions;
+using NSubstitute;
 using Xunit;
 
 namespace DomainTests.LayoutTests;
@@ -14,7 +16,9 @@ public class LayoutTests
     public void Layout_ShouldHaveFields_BasedOnRouletteType(RouletteType rouletteType)
     {
         // Arrange
-        var layout = new Layout(rouletteType);
+        var gameSettingsMock = Substitute.For<IGameSettings>();
+        gameSettingsMock.GetRouletteType().Returns(rouletteType);
+        var layout = new Layout(gameSettingsMock);
         
         // Assert
         layout.Fields.Select(f => f.Number).Should().BeEquivalentTo(rouletteType == RouletteType.American
@@ -26,7 +30,8 @@ public class LayoutTests
     public void Layout_ShouldHaveBetsProperty()
     {
         // Arrange
-        var layout = new Layout(RouletteType.European);
+        var gameSettingsMock = Substitute.For<IGameSettings>();
+        var layout = new Layout(gameSettingsMock);
         
         // Assert
         layout.Bets.Should().NotBeNull();

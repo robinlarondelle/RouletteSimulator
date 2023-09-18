@@ -1,4 +1,5 @@
 using Domain.Bets;
+using Domain.Game.Interfaces;
 using Domain.Numbers;
 using Domain.Shared;
 
@@ -9,9 +10,9 @@ public class Layout
     public IList<Field> Fields { get; set; }
     public IList<Bet> Bets { get; set; }
     
-    public Layout(RouletteType rouletteType)
+    public Layout(IGameSettings gameSettings)
     {
-        if (rouletteType == RouletteType.American)
+        if (gameSettings.GetRouletteType() == RouletteType.American)
         {
             Fields = NumberConstants.AmericanNumbers.Select(n => new Field(n)).ToList();
         }

@@ -1,6 +1,6 @@
-using RouletteSimulator.Engine.Interfaces;
+using UseCases.Wheel.Interfaces;
 
-namespace RouletteSimulator.Engine.Generators;
+namespace UseCases.Wheel.Generators;
 
 public class RandomIntGenerator : IRandomIntGenerator
 {
