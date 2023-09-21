@@ -1,28 +1,24 @@
-using Domain.Layout;
-using FluentAssertions;
-using Xunit;
+using Domain.Bets;
+using Domain.Layouts;
 
 namespace DomainTests.LayoutTests;
 
 public class LayoutTests
 {
-    [Fact]
-    public void Layout_ShouldHaveBetsProperty()
+    [Theory, AutoNSubstituteData]
+    public void Layout_ShouldOnlyBeInitializedWithCorrectProperties(
+        IList<Field> fields,
+        IList<Bet> bets)
     {
         // Arrange
-        var layout = new Layout();
+        var layout = new Layout
+        {
+            Fields = fields,
+            Bets = bets
+        };
         
         // Assert
-        layout.Bets.Should().NotBeNull();
-    }
-        
-    [Fact]
-    public void Layout_ShouldHaveFieldProperty()
-    {
-        // Arrange
-        var layout = new Layout();
-        
-        // Assert
-        layout.Bets.Should().NotBeNull();
+        layout.Bets.Should().NotBeNull().And.BeEquivalentTo(bets);
+        layout.Fields.Should().NotBeNull().And.BeEquivalentTo(fields);
     }
 }

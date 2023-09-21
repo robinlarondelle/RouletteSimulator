@@ -1,4 +1,4 @@
-using Domain.Layout;
+using Domain.Layouts;
 using Domain.Players;
 
 namespace Domain.Bets;

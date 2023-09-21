@@ -1,24 +1,24 @@
-using Domain.Game;
-using Domain.Wheel;
+using Domain.Numbers;
+using Domain.Wheels;
 using UseCases.Wheels.Interfaces;
 
 namespace UseCases.Wheels;
 
 public class CreateWheelUseCase : ICreateWheelUseCase
 {
-    public Wheel CreateWheel(RouletteType rouletteType)
+    public Wheel CreateEuropeanWheel()
     {
-        var wheel = new Wheel();
-
-        if (rouletteType is RouletteType.European)
+        return new Wheel()
         {
-            wheel.SetEuropeanPockets();
-        }
-        else
+            Pockets = NumberConstants.EuropeanNumbers
+        };
+    }
+    
+    public Wheel CreateAmericanWheel()
+    {
+        return new Wheel()
         {
-            wheel.SetAmericanPockets();
-        }
-
-        return wheel;
+            Pockets = NumberConstants.AmericanNumbers
+        };
     }
 }

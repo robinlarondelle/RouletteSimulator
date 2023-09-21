@@ -1,4 +1,4 @@
-using Domain.Layout;
+using Domain.Layouts;
 using Domain.Numbers;
 using FluentAssertions;
 using Xunit;

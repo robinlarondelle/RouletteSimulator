@@ -1,45 +1,21 @@
 using Domain.Numbers;
-using Domain.Wheel;
-using FluentAssertions;
-using Xunit;
+using Domain.Wheels;
 
 namespace DomainTests.WheelTests;
 
 public class WheelTests
 {
-    [Fact]
-    public void Wheel_ShouldHaveFPocketsProperty()
+    [Theory, AutoNSubstituteData]
+    public void Wheel_ShouldOnlyBeInitializedWithCorrectProperties(
+        IList<Number> pockets)
     {
         // Arrange
-        var wheel = new Wheel();
+        var wheel = new Wheel()
+        {
+            Pockets = pockets,
+        };
         
         // Assert
-        wheel.Pockets.Should().NotBeNull();
-    }
-    
-    [Fact]
-    public void Wheel_SetEuropeanPockets_ShouldSetPocketsToEuropeanNumbers()
-    {
-        // Arrange
-        var wheel = new Wheel();
-        
-        // Act
-        wheel.SetEuropeanPockets();
-        
-        // Assert
-        wheel.Pockets.Should().BeEquivalentTo(NumberConstants.EuropeanNumbers);
-    }
-    
-    [Fact]
-    public void Wheel_SetAmericanPockets_ShouldSetPocketsToAmericanNumbers()
-    {
-        // Arrange
-        var wheel = new Wheel();
-        
-        // Act
-        wheel.SetAmericanPockets();
-        
-        // Assert
-        wheel.Pockets.Should().BeEquivalentTo(NumberConstants.AmericanNumbers);
+        wheel.Pockets.Should().NotBeNull().And.BeEquivalentTo(pockets);
     }
 }

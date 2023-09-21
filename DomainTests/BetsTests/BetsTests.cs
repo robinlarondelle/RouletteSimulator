@@ -3,7 +3,7 @@ using Domain.Numbers;
 using Domain.Players;
 using FluentAssertions;
 using Xunit;
-using Field = Domain.Layout.Field;
+using Field = Domain.Layouts.Field;
 
 namespace DomainTests.BetsTests;
 

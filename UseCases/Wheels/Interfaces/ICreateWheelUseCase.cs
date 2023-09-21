@@ -1,9 +1,9 @@
-using Domain.Game;
-using Domain.Wheel;
+using Domain.Wheels;
 
 namespace UseCases.Wheels.Interfaces;
 
 public interface ICreateWheelUseCase
 {
-    Wheel CreateWheel(RouletteType rouletteType);
+    Wheel CreateEuropeanWheel();
+    Wheel CreateAmericanWheel();
 }

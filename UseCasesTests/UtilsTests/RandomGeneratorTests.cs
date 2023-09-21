@@ -2,7 +2,7 @@ using FluentAssertions;
 using UseCases.Utils;
 using Xunit;
 
-namespace UseCasesTests.Utils;
+namespace UseCasesTests.UtilsTests;
 
 public class RandomGeneratorTests
 {

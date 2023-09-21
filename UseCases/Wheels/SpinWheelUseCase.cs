@@ -1,5 +1,5 @@
 using Domain.Numbers;
-using Domain.Wheel;
+using Domain.Wheels;
 using UseCases.Utils.Interfaces;
 using UseCases.Wheels.Interfaces;
 

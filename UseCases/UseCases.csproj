@@ -10,7 +10,31 @@
 
 
     <ItemGroup>
+
+
+
+
+
+
+
+
+
+
+
+
       <ProjectReference Include="..\Domain\Domain.csproj" />
+
+
+
+
+
+
+
+
+
+
+
+
     </ItemGroup>
 
 

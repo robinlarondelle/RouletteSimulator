@@ -27,6 +27,10 @@
       <ProjectReference Include="..\Domain\Domain.csproj" />
       <ProjectReference Include="..\TestUtilities\TestUtilities.csproj" />
       <ProjectReference Include="..\UseCases\UseCases.csproj" />
+
+
+
+
     </ItemGroup>
 
 
