@@ -1,26 +1,40 @@
 using Domain.Bets;
+using Domain.Layouts;
+using Domain.Numbers;
 using Domain.Players;
 using UseCases.Bets;
-using UseCasesTests.Helpers;
 
 namespace UseCasesTests.LayoutTests;
 
 public class PlaceBetsUseCaseTests
 {
     [Theory, AutoNSubstituteData]
-    public void PlaceBetUseCase_ShouldPlaceBet_OnGivenField(
-        Player player)
+    public void PlaceBetUseCase_ShouldAddBet_ToGivenField(
+        Player player,
+        decimal multiplier,
+        decimal amount,
+        Number number)
     {
         // Arrange
-        var layout = LayoutTestsHelpers.CreateLayout();
-        var bet = new Bet(player, layout.Fields.First(), 10);
-        var placeBetUseCase = new PlaceBetUseCase(layout, bet);
+        var bet = new Bet
+        {
+            Player = player,
+            Multiplier = multiplier,
+            Amount = amount
+        };
 
+        var field = new Field
+        {
+            Number = number,
+            Bets = new List<Bet>()
+        };
+        
+        var placeBetUseCase = new PlaceBetUseCase(field, bet);
         
         // Act
-        var updatedLayout = placeBetUseCase.Execute();
+        var updatedField = placeBetUseCase.Execute();
         
         // Assert
-        updatedLayout.Bets.Should().Contain(bet);
+        updatedField.Bets.Should().HaveCount(1).And.Contain(bet);
     }
 }

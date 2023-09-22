@@ -12,7 +12,13 @@ public class PlayerTests
         // Arrange
         const string name = "John Doe";
         const decimal balance = 100;
-        var player = new Player(name, balance);
+        
+        // Act
+        var player = new Player
+        {
+            Name = name,
+            Balance = balance
+        };
         
         // Assert
         player.Name.Should().Be(name);

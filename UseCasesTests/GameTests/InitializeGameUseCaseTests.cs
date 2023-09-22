@@ -1,9 +1,8 @@
-using Domain.Game;
+using Domain.Games;
 using Domain.Numbers;
 using UseCases.Games;
 using UseCases.Layouts.Interfaces;
 using UseCases.Wheels.Interfaces;
-using UseCasesTests.Helpers;
 
 namespace UseCasesTests.GameTests;
 

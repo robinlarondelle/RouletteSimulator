@@ -6,7 +6,7 @@ namespace Domain.Games;
 
 public record Game
 {
-    public required Wheel Wheel { get; set; } 
-    public required Layout Layout { get; set; }
-    public required IList<Player> Players { get; set; }
+    public required Wheel Wheel { get; init; } 
+    public required Layout Layout { get; init; }
+    public required IList<Player> Players { get; init; }
 }

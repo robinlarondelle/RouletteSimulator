@@ -9,26 +9,26 @@ public class CreateLayoutUseCase : ICreateLayoutUseCase
 {
     public Layout CreateEuropeanLayout()
     {
-        var fields = NumberConstants.EuropeanNumbers.Select(n => new Field(n)).ToList();
-
-        var layout = new Layout
+        return new Layout
         {
-            Fields = fields,
-            Bets = new List<Bet>()
+            Fields = NumberConstants.EuropeanNumbers.Select(CreateField).ToList()
         };
-        
-        return layout;
     }
 
     public Layout CreateAmericanLayout()
     {
-        var fields = NumberConstants.AmericanNumbers.Select(n => new Field(n)).ToList();
-
-        var layout = new Layout
+        return new Layout
         {
-            Fields = fields,
+            Fields = NumberConstants.AmericanNumbers.Select(CreateField).ToList()
+        };
+    }
+
+    private static Field CreateField(Number number)
+    {
+        return new Field
+        {
+            Number = number,
             Bets = new List<Bet>()
         };
-        return layout;
     }
 }

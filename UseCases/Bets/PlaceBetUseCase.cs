@@ -1,22 +1,23 @@
 using Domain.Bets;
 using Domain.Layouts;
+using UseCases.Bets.Interfaces;
 
 namespace UseCases.Bets;
 
-public class PlaceBetUseCase
+public class PlaceBetUseCase : IPlaceBetUseCase
 {
-    private readonly Layout _layout;
+    private readonly Field _field;
     private readonly Bet _bet;
 
-    public PlaceBetUseCase(Layout layout, Bet bet)
+    public PlaceBetUseCase(Field field, Bet bet)
     {
-        _layout = layout;
+        _field = field;
         _bet = bet;
     }
     
-    public Layout Execute()
+    public Field Execute()
     {
-        _layout.Bets.Add(_bet);
-        return _layout;
+        _field.Bets.Add(_bet);
+        return _field;
     }
 }

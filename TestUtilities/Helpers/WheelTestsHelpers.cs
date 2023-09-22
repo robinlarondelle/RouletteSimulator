@@ -1,12 +1,12 @@
-using Domain.Game;
+using Domain.Games;
 using Domain.Numbers;
 using Domain.Wheels;
 
-namespace UseCasesTests.Helpers;
+namespace TestUtilities.Helpers;
 
-internal static class WheelTestsHelpers
+public static class WheelTestsHelpers
 {
-    internal static Wheel CreateWheel(RouletteType rouletteType = RouletteType.European)
+    public static Wheel CreateWheel(RouletteType rouletteType = RouletteType.European)
     {
         return new Wheel
         {

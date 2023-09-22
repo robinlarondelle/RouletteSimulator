@@ -1,11 +1,11 @@
 using AutoFixture;
 using Domain.Players;
 
-namespace UseCasesTests.Helpers;
+namespace TestUtilities.Helpers;
 
-internal static class PlayerTestsHelpers
+public static class PlayerTestsHelpers
 {
-    internal static Player CreatePlayer()
+    public static Player CreatePlayer()
     {
         var fixture = new CustomAutoFixture();
         return fixture.Create<Player>();

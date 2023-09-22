@@ -9,18 +9,23 @@ namespace DomainTests.BetsTests;
 
 public class BetsTests
 {
-    [Fact]
-    public void Bet_ShouldContainAField_Amount_AndPlayer()
+    [Theory, AutoNSubstituteData]
+    public void Bets_ShouldOnlyBeInitializedWithRequiredProperties(
+        Player player,
+        decimal multiplier,
+        decimal amount)
     {
-        // Arrange
-        var player = new Player("John Doe", 100);
-        var field = new Field(new Number("1", NumberColor.Black));
-        const decimal amount = 10;
-        var bet = new Bet(player, field, amount);
+        // Act
+        var bet = new Bet
+        {
+            Player = player,
+            Multiplier = multiplier,
+            Amount = amount
+        };
         
         // Assert
         bet.Player.Should().Be(player);
         bet.Amount.Should().Be(amount);
-        bet.Field.Should().Be(field);
+        bet.Multiplier.Should().Be(multiplier);
     }
 }

@@ -1,3 +1,4 @@
+using Domain.Bets;
 using Domain.Layouts;
 using Domain.Numbers;
 using FluentAssertions;
@@ -7,14 +8,19 @@ namespace DomainTests.LayoutTests;
 
 public class FieldTests
 {
-    [Fact]
-    public void Field_ShouldHaveANumberProperty()
+    [Theory, AutoNSubstituteData]
+    public void Field_ShouldOnlyBeInitializedWithRequiredProperties(
+        Number number,
+        IList<Bet> bets)
     {
-        // Arrange
-        var number = new Number("1", NumberColor.Black);
-        var field = new Field(number);
+        var field = new Field
+        {
+            Number = number,
+            Bets = bets
+        };
         
         // Assert
         field.Number.Should().Be(number);
+        field.Bets.Should().BeEquivalentTo(bets);
     }
 }

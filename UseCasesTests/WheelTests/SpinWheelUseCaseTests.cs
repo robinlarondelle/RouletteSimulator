@@ -1,12 +1,7 @@
-using Domain.Game;
+using Domain.Games;
 using Domain.Numbers;
-using FluentAssertions;
-using NSubstitute;
-using TestUtilities;
 using UseCases.Utils.Interfaces;
 using UseCases.Wheels;
-using UseCasesTests.Helpers;
-using Xunit;
 
 namespace UseCasesTests.WheelTests;
 

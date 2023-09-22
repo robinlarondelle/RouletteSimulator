@@ -1,11 +1,11 @@
-using Domain.Game;
+using Domain.Games;
 using Domain.Numbers;
 
-namespace UseCasesTests.Helpers;
+namespace TestUtilities.Helpers;
 
-internal static class NumberHelpers
+public static class NumberHelpers
 {
-    internal static IEnumerable<object[]> NumbersRouletteType
+    public static IEnumerable<object[]> NumbersRouletteType
     {
         get
         {

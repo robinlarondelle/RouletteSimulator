@@ -4,5 +4,5 @@ namespace Domain.Wheels;
 
 public record Wheel
 {
-    public required IList<Number> Pockets { get; set; }
+    public required IList<Number> Pockets { get; init; }
 }

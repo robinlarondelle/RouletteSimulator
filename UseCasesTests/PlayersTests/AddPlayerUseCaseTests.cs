@@ -1,5 +1,4 @@
 using UseCases.Players;
-using UseCasesTests.Helpers;
 
 namespace UseCasesTests.PlayersTests;
 
