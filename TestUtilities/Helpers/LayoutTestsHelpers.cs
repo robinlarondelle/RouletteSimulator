@@ -22,7 +22,7 @@ public static class LayoutTestsHelpers
         return new Field
         {
             Number = number,
-            Bets = new List<Bet>()
+            Bets = new List<Bet>(),
         };
     }
 }

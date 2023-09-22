@@ -1,4 +1,5 @@
 using Domain.Bets;
+using Domain.Exceptions;
 using Domain.Layouts;
 using UseCases.Bets.Interfaces;
 
@@ -17,7 +18,18 @@ public class PlaceBetUseCase : IPlaceBetUseCase
     
     public Field Execute()
     {
+        var playerBalance = _bet.Player.Balance;
+        var betAmount = _bet.Amount;
+
+        if (playerBalance - betAmount < 0)
+        {
+            throw new NotEnoughBalanceException();
+        }
+        
         _field.Bets.Add(_bet);
+
+        _bet.Player.Balance = playerBalance - betAmount;
+        
         return _field;
     }
 }
