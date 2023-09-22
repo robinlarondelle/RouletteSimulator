@@ -4,5 +4,5 @@ namespace UseCases.Bets.Interfaces;
 
 public interface IPlaceBetUseCase
 {
-    Field Execute();
+    void Execute();
 }

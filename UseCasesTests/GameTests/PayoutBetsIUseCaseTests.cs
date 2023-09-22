@@ -8,22 +8,22 @@ namespace UseCasesTests.GameTests;
 public class PayoutBetsIUseCaseTests
 {
     [Theory, AutoNSubstituteData]
-    public void PayoutBetsUseCase_ShouldAddPayoutToPlayerBalance_GivenField(
+    public void PayoutBetsUseCase_ShouldAddBetPlusPayoutMultiplierToPlayerBalance(
         Player player,
-        decimal startingBalance,
-        decimal amount,
-        decimal multiplier,
         Field field
     )
     {
         // Arrange
+        const int startingBalance = 100;
+        const int payoutMultiplier = 35;
+        const int amount = 20;
         player.Balance = startingBalance;
 
         var bet = new Bet
         {
             Player = player,
             Amount = amount,
-            Multiplier = multiplier
+            PayoutMultiplier = payoutMultiplier
         };
         
         field.Bets.Add(bet);
@@ -34,30 +34,17 @@ public class PayoutBetsIUseCaseTests
         payoutBetsUseCase.Execute();
         
         // Assert
-        player.Balance.Should().Be(startingBalance + amount * multiplier);
+
+        var expectedBalance = startingBalance + amount + (int) Math.Round((double)(amount * payoutMultiplier), MidpointRounding.ToZero);
+        player.Balance.Should().Be(expectedBalance);
     }
     
     [Theory, AutoNSubstituteData]
     public void PayoutBetsUseCase_ShouldRemoveBetsFromField_AfterPayout(
-        Player player,
-        decimal startingBalance,
-        decimal amount,
-        decimal multiplier,
         Field field
     )
     {
         // Arrange
-        player.Balance = startingBalance;
-
-        var bet = new Bet
-        {
-            Player = player,
-            Amount = amount,
-            Multiplier = multiplier
-        };
-        
-        field.Bets.Add(bet);
-        
         var payoutBetsUseCase = new PayoutBetsIUseCase(field);
 
         // Act

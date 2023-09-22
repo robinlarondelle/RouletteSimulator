@@ -11,7 +11,7 @@ public class PlayerTests
     {
         // Arrange
         const string name = "John Doe";
-        const decimal balance = 100;
+        const int balance = 100;
         
         // Act
         var player = new Player

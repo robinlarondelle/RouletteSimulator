@@ -6,9 +6,9 @@ namespace UseCases.Players;
 public class CreatePlayerUseCase : ICreatePlayerUseCase
 {
     private readonly string _name;
-    private readonly decimal _balance;
+    private readonly int _balance;
 
-    public CreatePlayerUseCase(string name, decimal balance)
+    public CreatePlayerUseCase(string name, int balance)
     {
         _name = name;
         _balance = balance;

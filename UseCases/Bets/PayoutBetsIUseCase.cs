@@ -16,10 +16,16 @@ public class PayoutBetsIUseCase
     {
         foreach (var bet in _field.Bets)
         {
-            var player = bet.Player;
-            player.Balance = player.Balance + bet.Amount * bet.Multiplier;
+            bet.Player.Balance = CalculateNewBalance(bet);
         }
 
         _field.Bets = new List<Bet>();
+    }
+
+    private static int CalculateNewBalance(Bet bet)
+    {
+        var player = bet.Player;
+        return player.Balance + bet.Amount +
+               (int)Math.Round((double)(bet.Amount * bet.PayoutMultiplier), MidpointRounding.ToZero);
     }
 }

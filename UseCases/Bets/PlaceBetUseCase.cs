@@ -1,35 +1,46 @@
 using Domain.Bets;
 using Domain.Exceptions;
 using Domain.Layouts;
+using Domain.Players;
 using UseCases.Bets.Interfaces;
 
 namespace UseCases.Bets;
 
 public class PlaceBetUseCase : IPlaceBetUseCase
 {
-    private readonly Field _field;
-    private readonly Bet _bet;
+    private readonly IList<Field> _fields;
+    private readonly Player _player;
+    private readonly int _amount;
 
-    public PlaceBetUseCase(Field field, Bet bet)
+    public PlaceBetUseCase(IList<Field> fields, Player player, int amount)
     {
-        _field = field;
-        _bet = bet;
+        _fields = fields;
+        _player = player;
+        _amount = amount;
     }
     
-    public Field Execute()
+    public void Execute()
     {
-        var playerBalance = _bet.Player.Balance;
-        var betAmount = _bet.Amount;
-
-        if (playerBalance - betAmount < 0)
+        if (_player.Balance - _amount < 0)
         {
             throw new NotEnoughBalanceException();
         }
-        
-        _field.Bets.Add(_bet);
 
-        _bet.Player.Balance = playerBalance - betAmount;
-        
-        return _field;
+        foreach (var field in _fields)
+        {
+            field.Bets.Add(new Bet
+            {
+                Player = _player,
+                Amount = _amount,
+                PayoutMultiplier = CalculatePayoutMultiplier()
+            });
+        }
+
+        _player.Balance -= _amount;
+    }
+
+    private int CalculatePayoutMultiplier()
+    {
+        return (int) Math.Round(decimal.Divide(35, _fields.Count), MidpointRounding.ToZero);
     }
 }

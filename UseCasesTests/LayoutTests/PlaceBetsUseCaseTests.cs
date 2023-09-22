@@ -9,9 +9,8 @@ namespace UseCasesTests.LayoutTests;
 public class PlaceBetsUseCaseTests
 {
     [Theory, AutoNSubstituteData]
-    public void PlaceBetUseCase_ShouldAddBet_ToGivenField(
+    public void PlaceBetUseCase_ShouldSetPayoutMultiplierTo35_WhenBettingOnOneField(
         Player player,
-        decimal multiplier,
         Field field)
     {
         // Arrange
@@ -19,50 +18,65 @@ public class PlaceBetsUseCaseTests
         const int amount = 20;
         player.Balance = balance;
         field.Bets = new List<Bet>();
-        var bet = new Bet
+        var fields = new List<Field> { field };
+
+        // Act
+        var placeBetUseCase = new PlaceBetUseCase(fields, player, amount);
+        placeBetUseCase.Execute();
+
+        // Assert
+        var expectedPayoutMultiplier = Math.Round(decimal.Round(35, fields.Count), MidpointRounding.ToZero);
+        fields.Should().AllSatisfy(f =>
         {
-            Player = player,
-            Multiplier = multiplier,
-            Amount = amount
-        };
-        
-        var placeBetUseCase = new PlaceBetUseCase(field, bet);
+            f.Bets.Should().HaveCount(1);
+            f.Bets.Select(b => b.PayoutMultiplier).Should().AllBeEquivalentTo(expectedPayoutMultiplier);
+        });
+    }
+    
+    [Theory, AutoNSubstituteData]
+    public void PlaceBetUseCase_ShouldAddBet_ToGivenField(
+        Player player,
+        Field field)
+    {
+        // Arrange
+        const int balance = 100;
+        const int amount = 20;
+        player.Balance = balance;
+        field.Bets = new List<Bet>();
+        var fields = new List<Field>() { field };
+        var placeBetUseCase = new PlaceBetUseCase(fields, player, amount);
         
         // Act
-        var updatedField = placeBetUseCase.Execute();
+        placeBetUseCase.Execute();
         
         // Assert
-        updatedField.Bets.Should().HaveCount(1).And.Contain(bet);
+        fields.Should().AllSatisfy(f =>
+        {
+            f.Bets.Should().HaveCount(1);
+        });
     }
-
+    
     [Theory, AutoNSubstituteData]
     public void PlaceBetUseCase_ShouldThrowNotEnoughBalanceException_WhenBetIsHigherThanPlayerBalance(
         Player player,
-        decimal multiplier,
-        decimal balance,
+        int balance,
         Field field)
     {
         // Arrange
         player.Balance = balance;
-        var bet = new Bet
-        {
-            Player = player,
-            Multiplier = multiplier,
-            Amount = balance + 10
-        };
-
-        var placeBetUseCase = new PlaceBetUseCase(field, bet);
-
+        var amount = balance + 20;
+        var fields = new List<Field>() { field };
+        var placeBetUseCase = new PlaceBetUseCase(fields, player, amount);
+    
         // Act
         placeBetUseCase
             .Invoking(x => x.Execute())
             .Should().Throw<NotEnoughBalanceException>();
     }
-
+    
     [Theory, AutoNSubstituteData]
     public void PlaceBetUseCase_ShouldUpdatePlayerBalance_AfterSuccessfulBetPlaced(
         Player player,
-        decimal multiplier,
         Field field)
     {
         // Arrange
@@ -70,14 +84,9 @@ public class PlaceBetsUseCaseTests
         const int amount = 20;
         player.Balance = balance;
         field.Bets = new List<Bet>();
-        var bet = new Bet
-        {
-            Player = player,
-            Multiplier = multiplier,
-            Amount = amount
-        };
-
-        var placeBetUseCase = new PlaceBetUseCase(field, bet);
+        var fields = new List<Field>() { field };
+        
+        var placeBetUseCase = new PlaceBetUseCase(fields, player, amount);
         
         // Act
         placeBetUseCase.Execute();

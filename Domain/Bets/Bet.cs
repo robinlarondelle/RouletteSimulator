@@ -5,6 +5,6 @@ namespace Domain.Bets;
 public record Bet
 {
     public required Player Player { get; init; }
-    public required decimal Amount { get; init; }
-    public required decimal Multiplier { get; init; }
+    public required int Amount { get; init; }
+    public required decimal PayoutMultiplier { get; init; }
 }
